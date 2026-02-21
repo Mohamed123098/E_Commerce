@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.DTOs
+namespace Domain.Exceptions.ProductExceptions
 {
-    public class ProductTypeDTO
+    public abstract class NotFoundException(string Message):Exception(Message)
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

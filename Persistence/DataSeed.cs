@@ -1,5 +1,5 @@
 ﻿using Domain.Contracts;
-using Domain.Models;
+using Domain.Models.ProductModule;
 using Microsoft.EntityFrameworkCore;
 using Persentation.Data;
 using System;

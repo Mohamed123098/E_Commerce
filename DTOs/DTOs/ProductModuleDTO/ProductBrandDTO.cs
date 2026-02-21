@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace Domain.Models
+
+namespace Shared.DTOs.ProductModuleDTO
 {
-    public class ProductType:BaseEntity<int>
+    public class ProductBrandDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public HashSet<Product> Products { get; set; } = new();
     }
 }

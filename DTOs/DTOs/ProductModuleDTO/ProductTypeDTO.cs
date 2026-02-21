@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Shared.DTOs.ProductModuleDTO
 {
-    public class ProductBrand:BaseEntity<int>
+    public class ProductTypeDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public HashSet<Product> Products { get; set; } = new();
-       
     }
 }

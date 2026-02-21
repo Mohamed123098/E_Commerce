@@ -14,14 +14,14 @@ namespace Shared
         public int? TypeId { get; set; }
         public ProductSortingOptions sortingOption  { get; set; }
         public string? SearchValue { get; set; }
-        public int PageIndex { get; set; }
-        private int pageSize;
+        public int PageIndex { get; set; } = 1;
+        private int pageSize=10;
 
         public int PageSize
         {
             get { return pageSize; }
-            set { pageSize = value>MaxSize?MaxSize: value; }
-        }
+            set { pageSize = value > MaxSize ? MaxSize : value; }
+        } 
         //public bool IsPaginated { get; set; }
 
     }
