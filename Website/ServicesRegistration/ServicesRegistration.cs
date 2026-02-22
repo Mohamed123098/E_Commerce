@@ -31,6 +31,7 @@ namespace Website.ServicesRegistration
             var scoppe = app.Services.CreateScope();
             var obj = scoppe.ServiceProvider.GetRequiredService<IDataSeeding>();
             await obj.DataSeedDataAsync();
+            await obj.IdentityDataSeedDataAsync();
 
         }
         public static void AddExceptionMiddleWare(this WebApplication app)

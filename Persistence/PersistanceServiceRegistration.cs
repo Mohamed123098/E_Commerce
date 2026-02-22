@@ -1,8 +1,11 @@
 ﻿using Domain.Contracts;
+using Domain.Models.IdentityModule;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persentation.Data;
+using Persistence.Identity;
 using Persistence.Repositories;
 using ServiceAbstraction;
 using ServiceImplementation;
@@ -30,7 +33,17 @@ namespace Persistence
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
                 }
                 );
+            services.AddIdentityCore<ApplicationUser>(options =>
+            {
+                
+            })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<IdentityStoreDbContext>();
             services.AddScoped<IDataSeeding, DataSeed>();
+            services.AddDbContext<IdentityStoreDbContext>(options=>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityConnectionString"));
+            });
             return services;
         }
        
