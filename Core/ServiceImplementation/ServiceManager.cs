@@ -2,7 +2,7 @@
 using Domain.Contracts;
 using Domain.Models.BasketModule;
 using ServiceAbstraction;
-using ServiceImplementation.BasketCustomerService;
+using ServiceImplementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace ServiceImplementation
 {
-    public class ServiceManager(IUnitOfWork unitOfWork,IMapper mapper,ICustomerBasket customerBasket) : IServiceManager
+    public class ServiceManager(IUnitOfWork unitOfWork,IMapper mapper,IBasketRepository repository) : IServiceManager
     {
-        private readonly Lazy<IProductService> productService =new Lazy<IProductService>(()=>new ProductService.ProductService(unitOfWork,mapper));
+        private readonly Lazy<IProductService> productService =new Lazy<IProductService>(()=>new ProductService(unitOfWork,mapper));
         public IProductService ProductService => productService.Value;
-        private readonly Lazy<ICustomerBasket> customerBasket = new Lazy<ICustomerBasket>(()=>new BasketCustomerService.BasketCustomerService(customerBasket,mapper));
-        public ICustomerBasket CustomerBasketService => customerBasket.Value;
+        private readonly Lazy<IBasketService> customerBasket = new Lazy<IBasketService>(()=>new BasketService(repository,mapper));
+        public IBasketService BasketService => customerBasket.Value;
     }
 }

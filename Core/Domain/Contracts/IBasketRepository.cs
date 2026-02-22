@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts
 {
-    public interface ICustomerBasket
+    public interface IBasketRepository
     {
         Task<CustomerBasket?> GetBasketAsync(string id);
         Task<CustomerBasket?> CreateOrUpdateAsync(CustomerBasket basket,TimeSpan? time);
         Task<bool> DeleteBasketAsync(string id);
+        
 
     }
 }

@@ -10,18 +10,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceImplementation.BasketCustomerService
+namespace ServiceImplementation
 {
-    public class BasketCustomerService(ICustomerBasket repository,IMapper _mapper) : ICustomerBasket
+    public class BasketService(IBasketRepository repository,IMapper _mapper) : IBasketService
     {
-        public async Task<CustomerBasketDTO> CreateOrUpdateAsync(CustomerBasketDTO basketCustomer,TimeSpan? time)
+        public async Task<CustomerBasketDTO?> CreateOrUpdateAsync(CustomerBasketDTO basketCustomer)
         {
-            //var basket =  _mapper.Map<CustomerBasketDTO, CustomerBasket>(basketCustomer);
-            var basket = new CustomerBasket() { Id = basketCustomer.Id, };//BasketItems =basketCustomer.BasketItemsDTO };
+            var basket =  _mapper.Map<CustomerBasketDTO,CustomerBasket>(basketCustomer);
+            //var basket = new CustomerBasket() { Id = basketCustomer.Id, };//BasketItems =basketCustomer.BasketItemsDTO };
             if (basket is not null)
             {
-                await repository.CreateOrUpdateAsync(basket, TimeSpan.FromDays(30));
-                return basketCustomer;
+               var createdOrUpdatedBasket = await repository.CreateOrUpdateAsync(basket, TimeSpan.FromDays(30));
+                if (createdOrUpdatedBasket != null)
+                    return await GetBasketAsync(basketCustomer.Id);
+                else
+                    throw new Exception($"Can't create or updated basket with id {basket.Id}");
             }
             throw new Exception($"Can't create or update customer basket with id {basketCustomer.Id}");
         }
@@ -39,5 +42,7 @@ namespace ServiceImplementation.BasketCustomerService
             throw new CustomerBasketNotFound(id);
         }
         public async Task<bool> DeleteBasketAsync(string id) => await repository.DeleteBasketAsync(id);
+
+   
     }
 }

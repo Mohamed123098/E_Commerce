@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class GenericBasketCustomer(IConnectionMultiplexer connection) : ICustomerBasketService
+    public class BasketRepository(IConnectionMultiplexer connection) : IBasketRepository
     {
         private readonly IDatabase _database = connection.GetDatabase();
         public async Task<CustomerBasket?> CreateOrUpdateAsync(CustomerBasket? basket,TimeSpan? time=null)
@@ -18,10 +18,9 @@ namespace Persistence.Repositories
             if(basket is not null)
             {
                 var basketObject = JsonSerializer.Serialize(basket);
-              var IsCreated= await _database.StringSetAsync(basket.Id,basketObject,time??TimeSpan.FromDays(30));
-                if (IsCreated)
+              var IsCreatedOrUpdated= await _database.StringSetAsync(basket.Id,basketObject,time??TimeSpan.FromDays(30));
+                if (IsCreatedOrUpdated)
                     return await GetBasketAsync(basket.Id);
-
             }
             return null;
         }
@@ -29,12 +28,14 @@ namespace Persistence.Repositories
         public async Task<bool> DeleteBasketAsync(string id)
         =>await _database.KeyDeleteAsync(id);
 
+
         public async Task<CustomerBasket?> GetBasketAsync(string id)
         {
             var basketJSON =await _database.StringGetAsync(id);
-            var basket = JsonSerializer.Deserialize<CustomerBasket>(basketJSON);
+            CustomerBasket? basket = JsonSerializer.Deserialize<CustomerBasket>(basketJSON);
             return basket;
             
         }
+        
     }
 }

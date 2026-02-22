@@ -17,6 +17,8 @@ namespace ServiceImplementation
         public static IServiceCollection AddServicesOfImplementationLayer(this IServiceCollection services,IConfiguration Configuration)
         {
             services.AddAutoMapper(x => x.AddProfile(new ProductProfile(Configuration)));
+            services.AddAutoMapper(x => x.AddProfile(new BasketProfile()));
+
             services.AddScoped<IServiceManager, ServiceManager>();
             //services.AddScoped<IBasketCustomerService, BasketCustomerService>();
             return services;

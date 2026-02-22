@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceAbstraction
 {
-    public interface IBasketCustomerService
+    public interface IBasketService
     {
         Task<CustomerBasketDTO?> GetBasketAsync(string id);
         Task<CustomerBasketDTO> CreateOrUpdateAsync(CustomerBasketDTO basketCustomer);

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceImplementation.ProductService
+namespace ServiceImplementation
 {
     public class ProductService(IUnitOfWork _unitOfWork,IMapper _mapper) : IProductService
     {
