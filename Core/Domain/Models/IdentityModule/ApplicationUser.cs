@@ -10,7 +10,8 @@ namespace Domain.Models.IdentityModule
 {
     public class ApplicationUser:IdentityUser
     {
-        public string DispalyName { get; set; }
+        public string Token { get; set; }
+        public string DisplayName { get; set; }
         public Address Address { get; set; }
     }
 }

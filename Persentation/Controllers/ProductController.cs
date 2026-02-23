@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServiceAbstraction;
 using Shared;
 using Shared.DTOs.ProductModuleDTO;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Persentation.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductController(IServiceManager _serviceManager):ControllerBase
+    
+    public class ProductController(IServiceManager _serviceManager):BaseApiController
     {
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<PaginationResult<ProductDTO>>> GetAllProducts([FromQuery]ProductQueryParams queryParams)   
             => Ok(await _serviceManager.ProductService.GetAllProductsAsync(queryParams));
         

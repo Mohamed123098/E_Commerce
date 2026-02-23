@@ -10,9 +10,12 @@ using System.Threading.Tasks;
 
 namespace Persistence.Identity
 {
-    public class IdentityStoreDbContext(DbContextOptions<IdentityStoreDbContext> options):IdentityDbContext<ApplicationUser>
+    public class IdentityStoreDbContext:IdentityDbContext<ApplicationUser>
     {
-      
+        public IdentityStoreDbContext(DbContextOptions<IdentityStoreDbContext> options):base(options)
+        {
+
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

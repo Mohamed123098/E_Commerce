@@ -11,6 +11,6 @@ namespace Domain.Models.IdentityModule
         public string LastName { get; set; }
         public ApplicationUser User { get; set; }
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

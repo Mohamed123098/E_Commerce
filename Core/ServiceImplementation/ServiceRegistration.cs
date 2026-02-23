@@ -3,6 +3,7 @@ using Domain.Models.BasketModule;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceAbstraction;
+using ServiceImplementation.Account;
 using ServiceImplementation.Mapping;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,9 @@ namespace ServiceImplementation
         {
             services.AddAutoMapper(x => x.AddProfile(new ProductProfile(Configuration)));
             services.AddAutoMapper(x => x.AddProfile(new BasketProfile()));
-
+            services.AddAutoMapper(x => x.AddProfile(new AccountProfile()));
             services.AddScoped<IServiceManager, ServiceManager>();
+            services.AddScoped<IAccountService, AccountService>();
             //services.AddScoped<IBasketCustomerService, BasketCustomerService>();
             return services;
         }

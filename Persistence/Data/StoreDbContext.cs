@@ -16,7 +16,7 @@ namespace Persentation.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductBrand> ProductBrands  { get; set; }
         public DbSet<Product> ProductTypes { get; set; }
-        public StoreDbContext(DbContextOptions options):base(options)
+        public StoreDbContext(DbContextOptions<StoreDbContext> options):base(options)
         {
 
         }

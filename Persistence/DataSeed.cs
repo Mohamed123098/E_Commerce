@@ -73,20 +73,20 @@ namespace Persistence
                 {
                     ApplicationUser user01 = new()
                     {
-                        DispalyName = "Muhammad Ragab",
+                        DisplayName = "Muhammad Ragab",
                         Email = "MuhammadRagab@gmail.com",
                         PhoneNumber = "01101087355",
                         UserName = "MuhammadRagab"
                     };
                     ApplicationUser user02 = new()
                     {
-                        DispalyName = "Hadir Muhammad",
+                        DisplayName = "Hadir Muhammad",
                         Email = "HadirMuhammad@gmail.com",
                         PhoneNumber = "01066803012",
                         UserName = "HadirMuhammad"
                     };
-                    await _userManager.CreateAsync(user01, "ABCD1234");
-                    await _userManager.CreateAsync(user02, "EFGH5678");
+                    await _userManager.CreateAsync(user01, "Aaasa1123@!");
+                    await _userManager.CreateAsync(user02, "QWWede1@@8");
                     await _userManager.AddToRoleAsync(user01, "Admin");
                     await _userManager.AddToRoleAsync(user02, "SuperAdmin");
                     await _identityStoreDbContext.SaveChangesAsync();

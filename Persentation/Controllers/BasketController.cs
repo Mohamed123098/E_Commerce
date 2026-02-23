@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace Persentation.Controllers
 {
-    [ApiController]
-    [Route("api/[Controller]")]
-    public class BasketController(IServiceManager _serviceManager):ControllerBase
+    
+    public class BasketController(IServiceManager _serviceManager):BaseApiController
     {
         [HttpGet]
         public async Task<ActionResult<CustomerBasketDTO>> GetBasketAsync(string id)
