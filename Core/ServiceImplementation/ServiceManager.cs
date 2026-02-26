@@ -24,6 +24,7 @@ namespace ServiceImplementation
 
         private readonly Lazy<IAccountService> accountService = new Lazy<IAccountService>(new Account.AccountService(userManager,configuration,mapper));
         public IAccountService AccountService => accountService.Value;
-
+        private readonly Lazy<IOrderService> orderService = new Lazy<IOrderService>(new OrderService(mapper, repository, unitOfWork));
+        public IOrderService OrderService =>orderService.Value ;
     }
 }

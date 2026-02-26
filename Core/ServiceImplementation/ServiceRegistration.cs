@@ -20,6 +20,8 @@ namespace ServiceImplementation
             services.AddAutoMapper(x => x.AddProfile(new ProductProfile(Configuration)));
             services.AddAutoMapper(x => x.AddProfile(new BasketProfile()));
             services.AddAutoMapper(x => x.AddProfile(new AccountProfile()));
+            services.AddAutoMapper(x => x.AddProfile(new AddressOrderProfile()));
+
             services.AddScoped<IServiceManager, ServiceManager>();
             services.AddScoped<IAccountService, AccountService>();
             //services.AddScoped<IBasketCustomerService, BasketCustomerService>();

@@ -40,7 +40,7 @@ namespace Website
             builder.Services.AddServicesOfPersistanceLayer(builder.Configuration);
             var app = builder.Build();
             //-----------------------------------------------------------
-            await app.AddSeddingConfiguration();
+            //await app.AddSeddingConfiguration();
             //---------------------------------------------------------------
             // Configure the HTTP request pipeline.
             #region ExceptionMiddleWare

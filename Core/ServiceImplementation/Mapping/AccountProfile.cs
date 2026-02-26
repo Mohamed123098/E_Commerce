@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Domain.Models.IdentityModule;
+using Domain.Models.OrderModule;
 using Shared.DTOs.Account;
+using Shared.DTOs.OrderDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace ServiceImplementation.Mapping
         {
             CreateMap<ApplicationUser, UserDTO>().ReverseMap();
             CreateMap<Address, AddressDTO>().ReverseMap();
+            CreateMap<OrderDeliveryMethod, DeliveryMethodsDTO>();
         }
     }
 }
