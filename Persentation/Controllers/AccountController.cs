@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace Persentation.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+   
     public class AccountController(IServiceManager _serviceManager):BaseApiController
     {
         [HttpPost("Register")]

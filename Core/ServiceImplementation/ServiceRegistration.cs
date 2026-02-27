@@ -21,8 +21,23 @@ namespace ServiceImplementation
             services.AddAutoMapper(x => x.AddProfile(new BasketProfile()));
             services.AddAutoMapper(x => x.AddProfile(new AccountProfile()));
             services.AddAutoMapper(x => x.AddProfile(new AddressOrderProfile()));
+            
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<Func<IProductService> >(provider=>
+                () => provider.GetRequiredService<IProductService>());
 
-            services.AddScoped<IServiceManager, ServiceManager>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<Func<IOrderService>>(provider => () => 
+            provider.GetRequiredService<IOrderService>());
+
+            services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<Func<IBasketService>>(provider => () =>
+            provider.GetRequiredService<IBasketService>());
+
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<Func<IAccountService>>(provider => () => 
+            provider.GetRequiredService<IAccountService>());
+            services.AddScoped<IServiceManager, ServiceManagerWithFactoryDelegate>();
             services.AddScoped<IAccountService, AccountService>();
             //services.AddScoped<IBasketCustomerService, BasketCustomerService>();
             return services;

@@ -27,7 +27,9 @@ namespace Website
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            
+            builder.Logging.AddFilter(
+                     "LuckyPennySoftware.AutoMapper.License",
+                 LogLevel.None);
             #region ServicesAdded
             builder.Services.AddServicesOfImplementationLayer(builder.Configuration);
             #endregion

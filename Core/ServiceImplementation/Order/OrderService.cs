@@ -20,7 +20,7 @@ namespace ServiceImplementation
             var ProductRepo = _unitOfWork.GetRepository<Product, int>();
             foreach (var item in basket.BasketItems)
             {
-                var product = await ProductRepo.GetByIdAsync(item.Id)??throw new Exception();
+                var product = await ProductRepo.GetByIdAsync(item.Id);//??throw new Exception();
                 var Items = new OrderItems()
                 {
                     OrderedItem = new() { Name = product?.Name, PictureURL = product?.PictureURL, ProductId = product.Id },

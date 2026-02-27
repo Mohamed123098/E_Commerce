@@ -32,7 +32,7 @@ namespace Persistence.Repositories
         public async Task<CustomerBasket?> GetBasketAsync(string id)
         {
             var basketJSON =await _database.StringGetAsync(id);
-            CustomerBasket? basket = JsonSerializer.Deserialize<CustomerBasket>(basketJSON);
+            CustomerBasket? basket = JsonSerializer.Deserialize<CustomerBasket>(basketJSON!);
             return basket;
             
         }
