@@ -40,6 +40,7 @@ namespace ServiceImplementation
             services.AddScoped<IServiceManager, ServiceManagerWithFactoryDelegate>();
             services.AddScoped<IAccountService, AccountService>();
             //services.AddScoped<IBasketCustomerService, BasketCustomerService>();
+            
             return services;
         }
     }

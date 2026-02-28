@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceImplementation.CacheService;
 
 namespace Persistence
 {
@@ -64,6 +65,9 @@ namespace Persistence
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SecreteKey"]))
                     };
                 });
+
+            services.AddScoped<ICacheRepository, CacheRepository>();
+            services.AddScoped<ICacheService, CacheService>();
             return services;
         }
        

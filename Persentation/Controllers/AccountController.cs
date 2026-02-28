@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Persentation.CustomAttributes;
 using ServiceAbstraction;
 using Shared.DTOs.Account;
 using System;
@@ -13,12 +14,14 @@ namespace Persentation.Controllers
     public class AccountController(IServiceManager _serviceManager):BaseApiController
     {
         [HttpPost("Register")]
+        [Cache]
         public async Task<ActionResult<UserDTO>> RegisterAsync(RegisterDTO registerDTO)
         {
           var user = await _serviceManager.AccountService.RegisterAsync(registerDTO);
             return Ok(user);
         }
         [HttpPost("Login")]
+        [Cache]
         public async Task<ActionResult<UserDTO>> LoginAsync(LoginDTO loginDTO)
         {
             var user =await _serviceManager.AccountService.LoginAsync(loginDTO);
